@@ -3,25 +3,19 @@ var express = require('express');
 var mongoose = require('mongoose');
 var path = require('path');
 var router = express.Router();
-// Connect to mongoDB database
+
 // const mongoURL = 'mongodb://<dbuser>:<dbpassword>@<host>:<port>/<database-name>';
 // const mongoURL = 'mongodb://localhost/todo';
 const mongoURL = process.env.MONGOLAB_URI;
-
 mongoose.Promise = global.Promise;
-// Use connect method to connect to the Server
-MongoClient.connect(url, function (err, db) {
-    if (err) {
-      console.log('Unable to connect to the mongoDB server. Error:', err);
-    } else {
-      console.log('Connection established to', url);
-  
-    // do some work here with the database.
-  
-    //Close connection
-    db.close();
-}
-
+	
+mongoose.connect(mongoURL);
+var db = mongoose.connection;
+db.on('error', console.error.bind(
+	  console,
+	  'MongoDB Connection Error'
+));
+    
 var Todo = mongoose.model('Todo', {
     text: String
 });
