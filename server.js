@@ -1,24 +1,20 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
 const env = require('node-env-file');
-
+const morgan = require('morgan');
 const app = express();
 
 env(__dirname + '/.env');
 
-// Connect to mongoDB database
-// const mongoURL = 'mongodb://<dbuser>:<dbpassword>@<host>:<port>/<database-name>';
-const mongoURL = 'mongodb://localhost/todo';
-
-mongoose.Promise = global.Promise;
-mongoose.connect(mongoURL);
-
 // Routing handler
 var handler = require('./routes/app');
-
 app.use('/', handler);
+
+app.use(express.static(__dirname + '/public'));
+app.use(morgan('dev'));
+app.use(bodyParser.urlencoded({'extended':'true'})); 
+app.use(bodyParser.json());   
 
 // Configure port
 const port = process.env.PORT || 8080;
