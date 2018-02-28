@@ -5,7 +5,8 @@ var path = require('path');
 var router = express.Router();
 // Connect to mongoDB database
 // const mongoURL = 'mongodb://<dbuser>:<dbpassword>@<host>:<port>/<database-name>';
-const mongoURL = 'mongodb://localhost/todo';
+// const mongoURL = 'mongodb://localhost/todo';
+const mongoURL = 'mongodb://ds151528.mlab.com:51528/heroku_bm02r3bg';
 
 mongoose.Promise = global.Promise;
 mongoose.connect(mongoURL);
