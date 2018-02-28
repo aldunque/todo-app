@@ -6,7 +6,7 @@ var router = express.Router();
 
 // const mongoURL = 'mongodb://<dbuser>:<dbpassword>@<host>:<port>/<database-name>';
 // const mongoURL = 'mongodb://localhost/todo';
-const mongoURL = 'mongodb://username:password@ds151528.mlab.com:51528/heroku_bm02r3bg/todo';
+const mongoURL = 'mongodb://heroku_bm02r3bg/todo';
 mongoose.Promise = global.Promise;
 	
 mongoose.connect(mongoURL);
