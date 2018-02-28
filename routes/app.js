@@ -6,10 +6,21 @@ var router = express.Router();
 // Connect to mongoDB database
 // const mongoURL = 'mongodb://<dbuser>:<dbpassword>@<host>:<port>/<database-name>';
 // const mongoURL = 'mongodb://localhost/todo';
-const mongoURL = 'mongodb://ds151528.mlab.com:51528/heroku_bm02r3bg/todo';
+const mongoURL = process.env.MONGOLAB_URI;
 
 mongoose.Promise = global.Promise;
-mongoose.connect(mongoURL);
+// Use connect method to connect to the Server
+MongoClient.connect(url, function (err, db) {
+    if (err) {
+      console.log('Unable to connect to the mongoDB server. Error:', err);
+    } else {
+      console.log('Connection established to', url);
+  
+    // do some work here with the database.
+  
+    //Close connection
+    db.close();
+}
 
 var Todo = mongoose.model('Todo', {
     text: String
