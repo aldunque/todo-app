@@ -9,7 +9,7 @@ var router = express.Router();
 const mongoURL = 'mongodb://heroku_bm02r3bg:tjlo47pp9hbb751ijk2tdkt6fj@ds151528.mlab.com:51528/heroku_bm02r3bg/todo';
 mongoose.Promise = global.Promise;
 	
-mongoose.connect(mongoURL);
+mongoose.connect(process.env.MONGODB_URI);
 var db = mongoose.connection;
 db.on('error', console.error.bind(
 	  console,
