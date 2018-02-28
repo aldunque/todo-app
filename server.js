@@ -6,15 +6,16 @@ const morgan = require('morgan');
 const app = express();
 
 env(__dirname + '/.env');
+app.use(express.static(__dirname + '/public'));
+
+app.use(morgan('dev'));
+app.use(bodyParser.urlencoded({'extended':'true'})); 
+app.use(bodyParser.json());
+app.use(bodyParser.json({ type: 'application/json' }));
 
 // Routing handler
 var handler = require('./routes/app');
 app.use('/', handler);
-
-app.use(express.static(__dirname + '/public'));
-app.use(morgan('dev'));
-app.use(bodyParser.urlencoded({'extended':'true'})); 
-app.use(bodyParser.json());   
 
 // Configure port
 const port = process.env.PORT || 8080;
