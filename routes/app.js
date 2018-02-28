@@ -4,11 +4,8 @@ var mongoose = require('mongoose');
 var path = require('path');
 var router = express.Router();
 
-// const mongoURL = 'mongodb://<dbuser>:<dbpassword>@<host>:<port>/<database-name>';
-// const mongoURL = 'mongodb://localhost/todo';
-const mongoURL = 'mongodb://heroku_bm02r3bg:tjlo47pp9hbb751ijk2tdkt6fj@ds151528.mlab.com:51528/heroku_bm02r3bg/todo';
 mongoose.Promise = global.Promise;
-	
+// const mongoURL = 'mongodb://localhost/todo'; // replace uri for local testing
 mongoose.connect(process.env.MONGODB_URI);
 var db = mongoose.connection;
 db.on('error', console.error.bind(
