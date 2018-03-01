@@ -6,6 +6,7 @@ var router = express.Router();
 
 mongoose.Promise = global.Promise;
 // const mongoURL = 'mongodb://localhost/todo'; // replace uri for local testing
+// mongoose.connect(mongoURL);
 mongoose.connect(process.env.MONGODB_URI);
 var db = mongoose.connection;
 db.on('error', console.error.bind(
