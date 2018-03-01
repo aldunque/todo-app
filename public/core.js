@@ -12,6 +12,7 @@
         $scope.formData = {};
 
         // when landing on the page, get all todos and show them
+        // TODO: use axios for passing data to backend
         $http.get('/todo')
             .success(function(data) {
                 $scope.todos = data;
