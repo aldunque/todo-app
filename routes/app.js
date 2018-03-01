@@ -5,13 +5,13 @@ var path = require('path');
 var router = express.Router();
 
 mongoose.Promise = global.Promise;
-// const mongoURL = 'mongodb://localhost/todo'; // replace uri for local testing
-// mongoose.connect(mongoURL);
-mongoose.connect(process.env.MONGODB_URI);
+const mongoURL = 'mongodb://localhost/todo'; // replace uri for local testing
+mongoose.connect(mongoURL);
+// mongoose.connect(process.env.MONGODB_URI);
 var db = mongoose.connection;
 db.on('error', console.error.bind(
-	  console,
-	  'MongoDB Connection Error'
+    console,
+    'MongoDB Connection Error'
 ));
     
 var Todo = mongoose.model('Todo', {
@@ -32,10 +32,10 @@ router.post('/todo', function(req, res) {
     // create todo
     // console.log("req body in post todo: ", req.body);
     console.log("req.body: ", req.body);
-    if (req.body.text == undefined || req.body.text == null) return alert("Write something!");
+    if (req.body.text == undefined || req.body.text == null) return console.log("Write something!");
     Todo.create({
         text: req.body.text,
-        done : false
+        done: false
     }, function(err, data) {
         if (err) return res.send(err);
         console.log('your data was saved');
